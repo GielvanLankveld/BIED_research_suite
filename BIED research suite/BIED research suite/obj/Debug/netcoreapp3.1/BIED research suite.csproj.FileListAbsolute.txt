@@ -1,10 +1,6 @@
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\bin\Debug\netcoreapp3.1\appsettings.json
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\bin\Debug\netcoreapp3.1\BIED research suite.deps.json
-D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\bin\Debug\netcoreapp3.1\BIED research suite.runtimeconfig.json
-D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\bin\Debug\netcoreapp3.1\BIED research suite.runtimeconfig.dev.json
-D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\bin\Debug\netcoreapp3.1\BIED research suite.dll
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\BIED research suite.csprojAssemblyReference.cache
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\BIED research suite.AssemblyInfoInputs.cache
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\BIED research suite.AssemblyInfo.cs
@@ -24,4 +20,3 @@ D:\SynologyDrive\Programming\Projects (language independent)\All purpose data co
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\BIED research suite.RazorTargetAssemblyInfo.cs
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\staticwebassets\BIED research suite.StaticWebAssets.Manifest.cache
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\staticwebassets\BIED research suite.StaticWebAssets.xml
-D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\BIED research suite.genruntimeconfig.cache
