@@ -86,3 +86,5 @@ D:\SynologyDrive\Programming\Projects (language independent)\All purpose data co
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\BIED research suite.dll
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\BIED research suite.pdb
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\BIED research suite.genruntimeconfig.cache
+D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\Razor\Views\Deelnemer\Index.cshtml.g.cs
+D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED research suite\obj\Debug\netcoreapp3.1\Razor\Views\Administration\Index.cshtml.g.cs

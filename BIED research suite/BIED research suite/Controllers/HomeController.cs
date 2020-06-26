@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BIED_research_suite.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BIED_research_suite.Controllers
 {
@@ -22,7 +23,7 @@ namespace BIED_research_suite.Controllers
         {
             return View();
         }
-
+        
         public IActionResult Privacy()
         {
             return View();
