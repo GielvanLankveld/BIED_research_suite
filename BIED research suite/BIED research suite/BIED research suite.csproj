@@ -16,8 +16,4 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Questionnaire\" />
-  </ItemGroup>
-
 </Project>
