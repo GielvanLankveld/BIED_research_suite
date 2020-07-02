@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace BIED_research_suite.Models
 {
-    public class QuestionnaireViewModel
+    public enum ItemTypes
     {
+        Text,
+        Value,
+        Likert
     }
 }
