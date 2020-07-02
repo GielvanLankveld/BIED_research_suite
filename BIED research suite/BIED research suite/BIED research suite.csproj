@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Onderzoeker\" />
+    <Folder Include="Views\Questionnaire\" />
   </ItemGroup>
 
 </Project>
