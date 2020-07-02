@@ -35,7 +35,7 @@ namespace BIED_research_suite
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddDbContext<QuestionnairesContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("QuestionnairesConnection")));
 
             services.AddControllersWithViews();
             services.AddRazorPages();

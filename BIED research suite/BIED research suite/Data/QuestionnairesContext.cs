@@ -5,7 +5,8 @@ namespace BIED_research_suite.Data
 {
     public class QuestionnairesContext : DbContext
     {
-        public QuestionnairesContext(DbContextOptions<QuestionnairesContext> options) : base(options)
+        public QuestionnairesContext(DbContextOptions<QuestionnairesContext> options)
+            : base(options)
         {
         }
 
