@@ -8,7 +8,8 @@ namespace BIED_research_suite.Models.Database_entities
 {
     public class QuestionnaireItem
     {
-        public int ID { get; set; }
+        public int QuestionnaireItemID { get; set; }
+        public int QuestionnaireSectionID { get; set; }
         public string ItemText { get; set; }
         public ItemTypes ItemType { get; set; }
     }

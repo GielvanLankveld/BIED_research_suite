@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<BIED_research_suite.Models.Database_entities.Questionnaire>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Vragenlijsten overzicht";
 }
 
-<h1>Index</h1>
+<h1>Vragenlijsten overzicht</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,12 +14,6 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IntroText)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PresentationTime)
             </th>
             <th></th>
         </tr>
@@ -31,15 +25,9 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IntroText)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PresentationTime)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.QuestionnaireID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.QuestionnaireID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.QuestionnaireID">Delete</a>
             </td>
         </tr>
 }

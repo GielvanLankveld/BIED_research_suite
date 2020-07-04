@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BIED_research_suite.Data;
+using BIED_research_suite.Models.Database_entities;
+using BIED_research_suite.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using BIED_research_suite.Data;
-using BIED_research_suite.Models.Database_entities;
 
 namespace BIED_research_suite.Controllers
 {
@@ -25,7 +23,7 @@ namespace BIED_research_suite.Controllers
             return View(await _context.Questionnaires.ToListAsync());
         }
 
-        // GET: Questionnaires/Details/5
+        // GET: Questionnaires/Details/1
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,8 +31,13 @@ namespace BIED_research_suite.Controllers
                 return NotFound();
             }
 
+            // Eager loading van de gerelateerde secties en items
             var questionnaire = await _context.Questionnaires
-                .FirstOrDefaultAsync(m => m.ID == id);
+                    .Include(s => s.QuestionnaireSections)
+                        .ThenInclude(i => i.QuestionnaireItems)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(q => q.QuestionnaireID == id);
+
             if (questionnaire == null)
             {
                 return NotFound();
@@ -54,7 +57,7 @@ namespace BIED_research_suite.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,IntroText,PresentationTime")] Questionnaire questionnaire)
+        public async Task<IActionResult> Create([Bind("ID,Title,IntroText")] Questionnaire questionnaire)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +68,7 @@ namespace BIED_research_suite.Controllers
             return View(questionnaire);
         }
 
-        // GET: Questionnaires/Edit/5
+        // GET: Questionnaires/Edit/1
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,9 +89,9 @@ namespace BIED_research_suite.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,IntroText,PresentationTime")] Questionnaire questionnaire)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,IntroText")] Questionnaire questionnaire)
         {
-            if (id != questionnaire.ID)
+            if (id != questionnaire.QuestionnaireID)
             {
                 return NotFound();
             }
@@ -102,7 +105,7 @@ namespace BIED_research_suite.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!QuestionnaireExists(questionnaire.ID))
+                    if (!QuestionnaireExists(questionnaire.QuestionnaireID))
                     {
                         return NotFound();
                     }
@@ -116,7 +119,7 @@ namespace BIED_research_suite.Controllers
             return View(questionnaire);
         }
 
-        // GET: Questionnaires/Delete/5
+        // GET: Questionnaires/Delete/1
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,7 +128,7 @@ namespace BIED_research_suite.Controllers
             }
 
             var questionnaire = await _context.Questionnaires
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.QuestionnaireID == id);
             if (questionnaire == null)
             {
                 return NotFound();
@@ -134,7 +137,7 @@ namespace BIED_research_suite.Controllers
             return View(questionnaire);
         }
 
-        // POST: Questionnaires/Delete/5
+        // POST: Questionnaires/Delete/1
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -147,7 +150,7 @@ namespace BIED_research_suite.Controllers
 
         private bool QuestionnaireExists(int id)
         {
-            return _context.Questionnaires.Any(e => e.ID == id);
+            return _context.Questionnaires.Any(e => e.QuestionnaireID == id);
         }
     }
 }
