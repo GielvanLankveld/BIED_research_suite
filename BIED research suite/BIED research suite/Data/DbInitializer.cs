@@ -21,7 +21,7 @@ namespace BIED_research_suite.Data
 
             var questionnaires = new Questionnaire[]
             {
-                new Questionnaire {QuestionnaireID=1, Title="Example questionnaire", IntroText="A questionnaire on an example topic"}
+                new Questionnaire {Title="Example questionnaire", IntroText="A questionnaire on an example topic"}
             };
             foreach (Questionnaire q in questionnaires)
             {
@@ -31,8 +31,8 @@ namespace BIED_research_suite.Data
 
             var sections = new QuestionnaireSection[]
             {
-                new QuestionnaireSection {QuestionnaireSectionID=1, QuestionnaireID=1,Title="Section 1", IntroText="Intro 1"},
-                new QuestionnaireSection {QuestionnaireSectionID=2, QuestionnaireID=1,Title="Section 2", IntroText="Intro 2"}
+                new QuestionnaireSection {QuestionnaireID=1,Title="Section 1", IntroText="Intro 1"},
+                new QuestionnaireSection {QuestionnaireID=1,Title="Section 2", IntroText="Intro 2"}
             };
             foreach (QuestionnaireSection s in sections)
             {
@@ -42,12 +42,12 @@ namespace BIED_research_suite.Data
 
             var items = new QuestionnaireItem[]
             {
-                new QuestionnaireItem {QuestionnaireItemID=1, QuestionnaireSectionID=1, ItemText="Item 1", ItemType=ItemTypes.Text},
-                new QuestionnaireItem {QuestionnaireItemID=2, QuestionnaireSectionID=2, ItemText="Item 2", ItemType=ItemTypes.Text},
-                new QuestionnaireItem {QuestionnaireItemID=3, QuestionnaireSectionID=1, ItemText="Item 3", ItemType=ItemTypes.Value},
-                new QuestionnaireItem {QuestionnaireItemID=4, QuestionnaireSectionID=2, ItemText="Item 4", ItemType=ItemTypes.Value},
-                new QuestionnaireItem {QuestionnaireItemID=5, QuestionnaireSectionID=1, ItemText="Item 5", ItemType=ItemTypes.Likert},
-                new QuestionnaireItem {QuestionnaireItemID=6, QuestionnaireSectionID=2, ItemText="Item 6", ItemType=ItemTypes.Likert}
+                new QuestionnaireItem {QuestionnaireSectionID=1, ItemText="Item 1", ItemType=ItemTypes.Text},
+                new QuestionnaireItem {QuestionnaireSectionID=2, ItemText="Item 2", ItemType=ItemTypes.Text},
+                new QuestionnaireItem {QuestionnaireSectionID=1, ItemText="Item 3", ItemType=ItemTypes.Value},
+                new QuestionnaireItem {QuestionnaireSectionID=2, ItemText="Item 4", ItemType=ItemTypes.Value},
+                new QuestionnaireItem {QuestionnaireSectionID=1, ItemText="Item 5", ItemType=ItemTypes.Likert},
+                new QuestionnaireItem {QuestionnaireSectionID=2, ItemText="Item 6", ItemType=ItemTypes.Likert}
             };
             foreach (QuestionnaireItem i in items)
             {

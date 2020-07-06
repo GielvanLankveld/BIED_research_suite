@@ -12,6 +12,6 @@ namespace BIED_research_suite.Models.Database_entities
         public int QuestionnaireID { get; set; }
         public string Title { get; set; }
         public string IntroText { get; set; }
-        public ICollection<QuestionnaireItem> QuestionnaireItems { get; set; }
+        public IList<QuestionnaireItem> QuestionnaireItems { get; set; }
     }
 }

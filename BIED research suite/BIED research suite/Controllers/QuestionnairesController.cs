@@ -1,6 +1,5 @@
 ﻿using BIED_research_suite.Data;
 using BIED_research_suite.Models.Database_entities;
-using BIED_research_suite.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -57,7 +56,7 @@ namespace BIED_research_suite.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,IntroText")] Questionnaire questionnaire)
+        public async Task<IActionResult> Create([Bind("QuestionnaireID,Title,IntroText")] Questionnaire questionnaire)
         {
             if (ModelState.IsValid)
             {
@@ -76,20 +75,26 @@ namespace BIED_research_suite.Controllers
                 return NotFound();
             }
 
-            var questionnaire = await _context.Questionnaires.FindAsync(id);
+            var questionnaire = await _context.Questionnaires
+                    .Include(s => s.QuestionnaireSections)
+                        .ThenInclude(i => i.QuestionnaireItems)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(q => q.QuestionnaireID == id);
+
             if (questionnaire == null)
             {
                 return NotFound();
             }
+
             return View(questionnaire);
         }
 
-        // POST: Questionnaires/Edit/5
+        // POST: Questionnaires/Edit/1
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,IntroText")] Questionnaire questionnaire)
+        public async Task<IActionResult> EditPost(int id, Questionnaire questionnaire)
         {
             if (id != questionnaire.QuestionnaireID)
             {
@@ -98,23 +103,17 @@ namespace BIED_research_suite.Controllers
 
             if (ModelState.IsValid)
             {
+
                 try
                 {
                     _context.Update(questionnaire);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Edit));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateException /* ex */)
                 {
-                    if (!QuestionnaireExists(questionnaire.QuestionnaireID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    ModelState.AddModelError("", "Unable to save changes.");
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(questionnaire);
         }

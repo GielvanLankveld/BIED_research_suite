@@ -1,31 +1,54 @@
 ﻿@model BIED_research_suite.Models.Database_entities.Questionnaire
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit questionnaire";
 }
 
-<h1>Edit</h1>
-
-<h4>Questionnaire</h4>
+<h1>Edit questionnaire</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-10">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="QuestionnaireID" />
+            <input type="hidden" asp-for="@Model.QuestionnaireID" />
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <label asp-for="@Model.Title" class="control-label">Vragenlijst titel</label>
+                <input asp-for="@Model.Title" class="form-control" />
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IntroText" class="control-label"></label>
-                <input asp-for="IntroText" class="form-control" />
-                <span asp-validation-for="IntroText" class="text-danger"></span>
+                <label asp-for="@Model.IntroText" class="control-label">Intro tekst</label>
+                <input asp-for="@Model.IntroText" class="form-control" />
+                <span asp-validation-for="@Model.IntroText" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Sectie toevoegen" class="btn btn-primary" />
-            </div>
+            @for (int i = 0; i < @Model.QuestionnaireSections.Count; i++)
+            {
+                <hr />
+                <h4>Section @Model.QuestionnaireSections[i].QuestionnaireSectionID</h4>
+                <div class="form-group">
+                    <label asp-for="@Model.QuestionnaireSections[i].Title" class="control-label">Sectie titel</label>
+                    <input asp-for="@Model.QuestionnaireSections[i].Title" class="form-control" />
+                    <span asp-validation-for="@Model.QuestionnaireSections[i].Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.QuestionnaireSections[i].IntroText" class="control-label">Intro tekst</label>
+                    <input asp-for="@Model.QuestionnaireSections[i].IntroText" class="form-control" />
+                    <span asp-validation-for="@Model.QuestionnaireSections[i].IntroText" class="text-danger"></span>
+                </div>
+                <h5>Items</h5>
+                @for (int j = 0; j < @Model.QuestionnaireSections[i].QuestionnaireItems.Count; j++)
+                {
+                    <div class="form-group">
+                        <label asp-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].ItemText" class="control-label">Item tekst</label>
+                        <input asp-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].ItemText" class="form-control" />
+                        <span asp-validation-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].ItemText" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <select asp-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].ItemType" class="form-control" asp-items="@Html.GetEnumSelectList<ItemTypes>()"></select>
+                        <span class="field__validation-message" asp-validation-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].ItemText"></span>
+                    </div>
+                }
+            }
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
