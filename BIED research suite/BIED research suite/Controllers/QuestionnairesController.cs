@@ -2,8 +2,6 @@
 using BIED_research_suite.Models.Database_entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -96,16 +94,20 @@ namespace BIED_research_suite.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int? id, Questionnaire updatedQuestionnaire)
+        public async Task<IActionResult> EditPost(Questionnaire updatedQuestionnaire)
         {
-            if (id == null)
+            if (updatedQuestionnaire == null)
             {
                 return NotFound();
             }
 
-            if (updatedQuestionnaire == null)
+            if (_context == null)
             {
-                return NotFound();
+                var questionnaire = await _context.Questionnaires
+                    .Include(s => s.QuestionnaireSections)
+                        .ThenInclude(i => i.QuestionnaireItems)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(q => q.QuestionnaireID == updatedQuestionnaire.QuestionnaireID);
             }
 
             if (ModelState.IsValid)

@@ -1,14 +1,11 @@
 ﻿using BIED_research_suite.Models;
 using BIED_research_suite.Models.Database_entities;
 using Microsoft.EntityFrameworkCore.Internal;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BIED_research_suite.Data
 {
-    public class DbInitializer
+    public class DbInitializerQuestionnaires
     {
         public static void Initialize(QuestionnairesContext context)
         {
@@ -43,10 +40,11 @@ namespace BIED_research_suite.Data
             var items = new QuestionnaireItem[]
             {
                 new QuestionnaireItem {QuestionnaireSectionID=1, ItemText="Item 1", ItemType=ItemTypes.Text},
-                new QuestionnaireItem {QuestionnaireSectionID=2, ItemText="Item 2", ItemType=ItemTypes.Text},
-                new QuestionnaireItem {QuestionnaireSectionID=1, ItemText="Item 3", ItemType=ItemTypes.Value},
-                new QuestionnaireItem {QuestionnaireSectionID=2, ItemText="Item 4", ItemType=ItemTypes.Value},
-                new QuestionnaireItem {QuestionnaireSectionID=1, ItemText="Item 5", ItemType=ItemTypes.Likert},
+                new QuestionnaireItem {QuestionnaireSectionID=1, ItemText="Item 2", ItemType=ItemTypes.Value},
+                new QuestionnaireItem {QuestionnaireSectionID=1, ItemText="Item 3", ItemType=ItemTypes.Likert},
+
+                new QuestionnaireItem {QuestionnaireSectionID=2, ItemText="Item 4", ItemType=ItemTypes.Text},
+                new QuestionnaireItem {QuestionnaireSectionID=2, ItemText="Item 5", ItemType=ItemTypes.Value},
                 new QuestionnaireItem {QuestionnaireSectionID=2, ItemText="Item 6", ItemType=ItemTypes.Likert}
             };
             foreach (QuestionnaireItem i in items)

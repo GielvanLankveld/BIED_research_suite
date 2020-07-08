@@ -36,6 +36,8 @@ namespace BIED_research_suite
 
             services.AddDbContext<QuestionnairesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("QuestionnairesConnection")));
+            services.AddDbContext<ResearchesContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ResearchesConnection")));
 
             services.AddControllersWithViews();
             services.AddRazorPages();
