@@ -2,6 +2,8 @@
 using BIED_research_suite.Models.Database_entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -94,20 +96,24 @@ namespace BIED_research_suite.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int id, Questionnaire questionnaire)
+        public async Task<IActionResult> EditPost(int? id, Questionnaire updatedQuestionnaire)
         {
-            if (id != questionnaire.QuestionnaireID)
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            if (updatedQuestionnaire == null)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-
                 try
                 {
-                    _context.Update(questionnaire);
-                    await _context.SaveChangesAsync();
+                    _context.Update(updatedQuestionnaire);
+                    _context.SaveChanges();
                     return RedirectToAction(nameof(Edit));
                 }
                 catch (DbUpdateException /* ex */)
@@ -115,7 +121,8 @@ namespace BIED_research_suite.Controllers
                     ModelState.AddModelError("", "Unable to save changes.");
                 }
             }
-            return View(questionnaire);
+
+            return View();
         }
 
         // GET: Questionnaires/Delete/1

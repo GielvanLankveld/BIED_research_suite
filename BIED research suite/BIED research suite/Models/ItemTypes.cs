@@ -9,6 +9,7 @@ namespace BIED_research_suite.Models
     {
         Text,
         Value,
-        Likert
+        Likert,
+        Checkbox
     }
 }

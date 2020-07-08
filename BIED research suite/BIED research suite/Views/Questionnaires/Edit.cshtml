@@ -10,19 +10,21 @@
     <div class="col-md-10">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="@Model.QuestionnaireID" />
+            <input type="hidden" asp-for="QuestionnaireID" />
             <div class="form-group">
-                <label asp-for="@Model.Title" class="control-label">Vragenlijst titel</label>
-                <input asp-for="@Model.Title" class="form-control" />
-                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                <label asp-for="Title" class="control-label">Vragenlijst titel</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.IntroText" class="control-label">Intro tekst</label>
-                <input asp-for="@Model.IntroText" class="form-control" />
-                <span asp-validation-for="@Model.IntroText" class="text-danger"></span>
+                <label asp-for="IntroText" class="control-label">Intro tekst</label>
+                <input asp-for="IntroText" class="form-control" />
+                <span asp-validation-for="IntroText" class="text-danger"></span>
             </div>
             @for (int i = 0; i < @Model.QuestionnaireSections.Count; i++)
             {
+                <input type="hidden" asp-for="@Model.QuestionnaireSections[i].QuestionnaireSectionID" />
+                <input type="hidden" asp-for="@Model.QuestionnaireSections[i].QuestionnaireID" />
                 <hr />
                 <h4>Section @Model.QuestionnaireSections[i].QuestionnaireSectionID</h4>
                 <div class="form-group">
@@ -38,6 +40,8 @@
                 <h5>Items</h5>
                 @for (int j = 0; j < @Model.QuestionnaireSections[i].QuestionnaireItems.Count; j++)
                 {
+                    <input type="hidden" asp-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].QuestionnaireItemID" />
+                    <input type="hidden" asp-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].QuestionnaireSectionID" />
                     <div class="form-group">
                         <label asp-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].ItemText" class="control-label">Item tekst</label>
                         <input asp-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].ItemText" class="form-control" />

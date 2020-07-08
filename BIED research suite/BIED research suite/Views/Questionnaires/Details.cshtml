@@ -4,10 +4,8 @@
     ViewData["Title"] = "Vragenlijst details";
 }
 
-<h1>Title</h1>
-
 <div>
-    <h4>@Html.DisplayFor(model => model.Title)</h4>
+    <h1>@Html.DisplayFor(model => model.Title)</h1>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -19,12 +17,20 @@
     </dl>
     @foreach (var section in Model.QuestionnaireSections)
     {
-        <h5>Section @Html.DisplayFor(model => section.QuestionnaireSectionID)</h5>
+        <h5>Sectie @Html.DisplayFor(model => section.QuestionnaireSectionID)</h5>
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
+                Titel
+            </dt>
+            <dt class="col-sm-10">
                 Intro tekst
             </dt>
+        </dl>
+        <dl class="row">
+            <dd class="col-sm-2">
+                @Html.DisplayFor(model => section.Title)
+            </dd>
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => section.IntroText)
             </dd>
@@ -32,20 +38,20 @@
         <h5>Items</h5>
         <hr />
         <dl class="row">
-            <dt class="col-sm-2">
+            <dt class="col-sm-10">
                 Item tekst
             </dt>
-            <dd class="col-sm-10">
+            <dt class="col-sm-2">
                 Item type
-            </dd>
+            </dt>
         </dl>
         @foreach (var item in section.QuestionnaireItems)
         {
             <dl class="row">
-                <dd class="col-sm-2">
+                <dd class="col-sm-10">
                     @Html.DisplayFor(model => item.ItemText)
                 </dd>
-                <dd class="col-sm-10">
+                <dd class="col-sm-2">
                     @Html.DisplayFor(model => item.ItemType)
                 </dd>
             </dl>
