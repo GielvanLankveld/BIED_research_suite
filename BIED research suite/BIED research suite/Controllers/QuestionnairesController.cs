@@ -1,5 +1,6 @@
 ﻿using BIED_research_suite.Data;
 using BIED_research_suite.Models.Database_entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BIED_research_suite.Controllers
 {
+    [Authorize(Roles = "Onderzoeker")]
     public class QuestionnairesController : Controller
     {
         private readonly QuestionnairesContext _context;

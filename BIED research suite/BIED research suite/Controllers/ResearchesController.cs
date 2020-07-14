@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BIED_research_suite.Data;
 using BIED_research_suite.Models.Database_entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BIED_research_suite.Controllers
 {
+    [Authorize(Roles = "Onderzoeker")]
     public class ResearchesController : Controller
     {
         private readonly ResearchesContext _context;
