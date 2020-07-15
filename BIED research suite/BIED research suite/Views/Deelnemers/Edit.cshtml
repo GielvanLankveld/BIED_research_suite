@@ -1,0 +1,45 @@
+﻿@model BIED_research_suite.Models.ResponseViewModel
+
+@{
+    ViewData["Title"] = @Html.DisplayFor(model => model.questionnaire.Title);
+}
+
+<h1>@Html.DisplayFor(model => model.questionnaire.Title)</h1>
+<hr />
+
+<p>@Html.DisplayFor(model => model.questionnaire.IntroText)</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            @for (int section = 0; section < Model.questionnaire.QuestionnaireSections.Count; section++)
+            {
+                <hr />
+                <h5>Sectie  @Html.DisplayFor(model => Model.questionnaire.QuestionnaireSections[section].QuestionnaireSectionID)</h5>
+                <p>@Html.DisplayFor(model => Model.questionnaire.QuestionnaireSections[section].IntroText)</p>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="dataset.DatasetID" />
+                @for (int item = 1; item <= Model.questionnaire.QuestionnaireSections.Count; item++)
+                {
+                    <div class="form-group">
+                        <label asp-for="dataset.Responses" class="control-label">@Html.DisplayFor(model => Model.questionnaire.QuestionnaireSections[section].QuestionnaireItems[item].ItemText)</label>
+                        <input asp-for="dataset.Responses" class="form-control" />
+                        <span asp-validation-for="dataset.Responses" class="text-danger"></span>
+                    </div>
+                }
+            }
+            <div class="form-group">
+                <input type="submit" value="Inleveren" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

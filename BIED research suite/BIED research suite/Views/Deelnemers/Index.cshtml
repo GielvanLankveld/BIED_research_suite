@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BIED_research_suite.Models.Database_entities.Questionnaire>
+
+@{
+    ViewData["Title"] = "Mijn vragenlijsten";
+}
+
+<h1>Alle openstaande vragenlijsten</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Vragenlijst
+            </th>
+            <th>
+                Start datum
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var questionnaire in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => questionnaire.Title)
+            </td>
+            <td>
+
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@questionnaire.QuestionnaireID">Invullen</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

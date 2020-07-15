@@ -1,25 +1,16 @@
 ﻿@model IEnumerable<BIED_research_suite.Models.Database_entities.Dataset>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Datasets overzicht";
 }
 
-<h1>Index</h1>
+<h1>Datasets per vragenlijst</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.QuestionnaireID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ParticipantID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SubmissionDate)
             </th>
             <th></th>
         </tr>
@@ -29,12 +20,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.QuestionnaireID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParticipantID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubmissionDate)
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.DatasetID">View</a> |

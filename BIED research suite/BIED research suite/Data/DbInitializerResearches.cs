@@ -25,15 +25,8 @@ namespace BIED_research_suite.Data
                 context.Researches.Add(r);
             }
             context.SaveChanges();
-
-            var phases = new ResearchPhase[]
-            {
-                new ResearchPhase { ResearchPhaseID = 1, QuestionnaireID = 1}
-            };
-            foreach (ResearchPhase s in phases)
-            {
-                context.ResearchePhases.Add(s);
-            }
+            
+            context.ResearchePhases.Add(new ResearchPhase { ResearchPhaseID = 1, QuestionnaireID = 1 });
             context.SaveChanges();
         }
 
