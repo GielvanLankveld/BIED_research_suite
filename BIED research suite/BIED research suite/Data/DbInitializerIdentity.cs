@@ -1,6 +1,5 @@
-﻿using BIED_research_suite.Models;
-using BIED_research_suite.Models.Database_entities;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System.Linq;
 
@@ -12,7 +11,7 @@ namespace BIED_research_suite.Data
         {
             context.Database.EnsureCreated();
 
-            if (context.UserRoles.Any())
+            if (context.Users.Any())
             {
                 return;
             }
@@ -34,11 +33,13 @@ namespace BIED_research_suite.Data
                 context.SaveChanges();
             }
 
+            //var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context),new IdentityOptions(), new PasswordHasher<IdentityUser>());
+
             // Check if the administrator user exists
             if (!context.Users.Contains<IdentityUser>(new IdentityUser { UserName = "Administrator"}))
             {
                 // Add the administrator user
-                IdentityUser admin = new IdentityUser { Email = "administrator@email.com", EmailConfirmed = true, UserName = "Administrator", PasswordHash = "AQAAAAEAACcQAAAAENSc5vWvpKM3SgNehK/u8AGStgn411LjfMyORchqDW1OLEzQ2/xJXJ+GiysmeRivXw==" };
+                IdentityUser admin = new IdentityUser { Email = "administrator@email.com", NormalizedEmail = "ADMINISTRATOR@EMAIL.COM", EmailConfirmed = true, UserName = "Administrator", NormalizedUserName = "ADMINISTRATOR", PasswordHash = "AQAAAAEAACcQAAAAEMEPXSA/VROK4VJH5HRZ1Dje2oGdnrtch9OjV4cA+ccVhKMjJF+fOa4nQvZJeGHPzg==" };
                 context.Users.Add(admin);
                 context.SaveChanges();
 
@@ -53,7 +54,7 @@ namespace BIED_research_suite.Data
             if (!context.Users.Contains<IdentityUser>(new IdentityUser { UserName = "Onderzoeker" }))
             {
                 // Add the onderzoeker user
-                IdentityUser onderzoeker = new IdentityUser { Email = "onderzoeker@email.com", EmailConfirmed = true, UserName = "Onderzoeker", PasswordHash = "AQAAAAEAACcQAAAAENSc5vWvpKM3SgNehK/u8AGStgn411LjfMyORchqDW1OLEzQ2/xJXJ+GiysmeRivXw==" };
+                IdentityUser onderzoeker = new IdentityUser { Email = "onderzoeker@email.com", NormalizedEmail = "ONDERZOEKER@EMAIL.COM", EmailConfirmed = true, UserName = "Onderzoeker", NormalizedUserName = "ONDERZOEKER", PasswordHash = "AQAAAAEAACcQAAAAEPToq80vROeKJNRKieLR3NCWpC0IdtZHKmr1tLqP2F+C4CkJwwBamN84WAVpOEuNyg==" };
                 context.Users.Add(onderzoeker);
                 context.SaveChanges();
 

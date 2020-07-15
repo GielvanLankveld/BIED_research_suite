@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BIED_research_suite.Controllers
 {
-    [Authorize(Roles = "Deelnemer")]
     public class DeelnemerController : Controller
     {
         public IActionResult Index()

@@ -18,5 +18,7 @@ namespace BIED_research_suite.Data
             modelBuilder.Entity<Research>().ToTable("Research");
             modelBuilder.Entity<ResearchPhase>().ToTable("ResearchPhase");
         }
+
+        public DbSet<BIED_research_suite.Models.Database_entities.Dataset> Dataset { get; set; }
     }
 }

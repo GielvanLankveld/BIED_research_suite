@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace BIED_research_suite.Models.Database_entities
 {
-    public class QuestionnaireResponseFullDataset
+    public class Dataset
     {
-        public int ID { get; set; }
-        public DateTime SubmissionDate { get; set; }
+        public int DatasetID { get; set; }
+        public int QuestionnaireID { get; set; }
         public string ParticipantID { get; set; }
-        public ICollection<QuestionnaireResponseItem> AllItemResponses { get; set; }
+        public DateTime SubmissionDate { get; set; }
+        public ICollection<Response> Responses { get; set; }
     }
 }

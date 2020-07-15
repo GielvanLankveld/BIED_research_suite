@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace BIED_research_suite.Models.Database_entities
 {
-    public class QuestionnaireResponseItem
+    public class Response
     {
-        public int ID { get; set; }
+        public int ResponseID { get; set; }
+        public int DatasetID { get; set; }
         public ItemTypes ResponseType { get; set; }
-        public string ResponseData { get; set; }
+        public string Data { get; set; }
     }
 }

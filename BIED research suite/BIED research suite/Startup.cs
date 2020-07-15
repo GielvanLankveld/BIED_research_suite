@@ -45,6 +45,10 @@ namespace BIED_research_suite
             services.AddDbContext<ResearchesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ResearchesConnection")));
 
+            //Add an ef core database context for datasets
+            services.AddDbContext<DatasetsContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DatasetsConnection")));
+
             //Add all required services for MVC and razorpages (.net core 3.1 version)
             services.AddControllersWithViews();
             services.AddRazorPages();

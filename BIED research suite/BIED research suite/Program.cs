@@ -37,6 +37,10 @@ namespace BIED_research_suite
                 var context2 = services.GetRequiredService<ResearchesContext>();
                 context2.Database.EnsureCreated();
                 DbInitializerResearches.Initialize(context2);
+
+                var context3 = services.GetRequiredService<DatasetsContext>();
+                context2.Database.EnsureCreated();
+                DbInitializerDatasets.Initialize(context3, context1);
             }
             catch (Exception ex)
             {
