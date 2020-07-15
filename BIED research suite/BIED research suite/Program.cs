@@ -23,8 +23,13 @@ namespace BIED_research_suite
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
 
+            //Make sure all the databases are seeded
             try
             {
+                var identityContext = services.GetRequiredService<ApplicationDbContext>();
+                identityContext.Database.EnsureCreated();
+                DbInitializerIdentity.Initialize(identityContext);
+
                 var context1 = services.GetRequiredService<QuestionnairesContext>();
                 context1.Database.EnsureCreated();
                 DbInitializerQuestionnaires.Initialize(context1);

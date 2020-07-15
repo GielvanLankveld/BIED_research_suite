@@ -27,18 +27,25 @@ namespace BIED_research_suite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Add an ef core database for identity
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            //Add identity (3.1) to the application
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            //Add an ef core database context for questionnaires
             services.AddDbContext<QuestionnairesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("QuestionnairesConnection")));
+
+            //Add an ef core database context for research projects
             services.AddDbContext<ResearchesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ResearchesConnection")));
 
+            //Add all required services for MVC and razorpages (.net core 3.1 version)
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -62,6 +69,7 @@ namespace BIED_research_suite
 
             app.UseRouting();
 
+            //Enable identity authentication and authorization
             app.UseAuthentication();
             app.UseAuthorization();
 
