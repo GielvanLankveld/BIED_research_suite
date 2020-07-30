@@ -1,13 +1,13 @@
 ﻿@model BIED_research_suite.Models.Database_entities.Research
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Onderzoek details";
 }
 
-<h1>Details</h1>
+    <h1>Onderzoek details</h1>
 
 <div>
-    <h4>Research</h4>
+    <h4>Onderzoek</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -31,6 +31,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ResearchID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ResearchID">Aanpassen</a> |
+    <a asp-action="Index">Terug naar de lijst</a>
 </div>

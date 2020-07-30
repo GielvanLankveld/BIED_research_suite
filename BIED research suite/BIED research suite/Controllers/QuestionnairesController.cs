@@ -3,6 +3,8 @@ using BIED_research_suite.Models.Database_entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -96,7 +98,7 @@ namespace BIED_research_suite.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(Questionnaire updatedQuestionnaire)
+        public async Task<IActionResult> PostEdit(Questionnaire updatedQuestionnaire)
         {
             if (updatedQuestionnaire == null)
             {
@@ -112,6 +114,7 @@ namespace BIED_research_suite.Controllers
                     .FirstOrDefaultAsync(q => q.QuestionnaireID == updatedQuestionnaire.QuestionnaireID);
             }
 
+            //If the only actions were changes to existing values
             if (ModelState.IsValid)
             {
                 try
@@ -119,6 +122,158 @@ namespace BIED_research_suite.Controllers
                     _context.Update(updatedQuestionnaire);
                     _context.SaveChanges();
                     return RedirectToAction(nameof(Edit));
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    ModelState.AddModelError("", "Unable to save changes.");
+                }
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> NewSection(int? questionnaireId)
+        {
+            if (questionnaireId == null)
+            {
+                return NotFound();
+            }
+
+            if (_context == null)
+            {
+                var questionnaire = await _context.Questionnaires
+                    .Include(s => s.QuestionnaireSections)
+                        .ThenInclude(i => i.QuestionnaireItems)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(q => q.QuestionnaireID == questionnaireId.Value);
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.QuestionnaireSections.Add(new QuestionnaireSection
+                    {
+                        QuestionnaireID = questionnaireId.Value
+                    });
+                    _context.SaveChanges();
+                    return RedirectToAction(nameof(Edit),new { id = questionnaireId.Value });
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    ModelState.AddModelError("", "Unable to save changes.");
+                }
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> NewItem(int? questionnaireId, int? sectionId)
+        {
+            if (questionnaireId == null || sectionId == null)
+            {
+                return NotFound();
+            }
+
+            if (_context == null)
+            {
+                var questionnaire = await _context.Questionnaires
+                    .Include(s => s.QuestionnaireSections)
+                        .ThenInclude(i => i.QuestionnaireItems)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(q => q.QuestionnaireID == questionnaireId.Value);
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.QuestionnaireItems.Add(new QuestionnaireItem
+                    {
+                        QuestionnaireSectionID = sectionId.Value
+                    });
+                    _context.SaveChanges();
+                    return RedirectToAction(nameof(Edit), new { id = questionnaireId.Value });
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    ModelState.AddModelError("", "Unable to save changes.");
+                }
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteItem(int? questionnaireId, int? itemId)
+        {
+            if (questionnaireId == null || itemId == null)
+            {
+                return NotFound();
+            }
+
+            if (_context == null)
+            {
+                var questionnaire = await _context.Questionnaires
+                    .Include(s => s.QuestionnaireSections)
+                        .ThenInclude(i => i.QuestionnaireItems)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(q => q.QuestionnaireID == questionnaireId.Value);
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //Remove section
+                    _context.QuestionnaireItems.Remove(new QuestionnaireItem
+                    {
+                        QuestionnaireItemID = itemId.Value
+                    });
+                    _context.SaveChanges();
+
+                    return RedirectToAction(nameof(Edit), new { id = questionnaireId.Value });
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    ModelState.AddModelError("", "Unable to save changes.");
+                }
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteSection(int? questionnaireId, int? sectionId)
+        {
+            if (questionnaireId == null || sectionId == null)
+            {
+                return NotFound();
+            }
+
+            if (_context == null)
+            {
+                var questionnaire = await _context.Questionnaires
+                    .Include(s => s.QuestionnaireSections)
+                        .ThenInclude(i => i.QuestionnaireItems)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(q => q.QuestionnaireID == questionnaireId.Value);
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //Remove section
+                    _context.QuestionnaireSections.Remove(new QuestionnaireSection
+                    {
+                        QuestionnaireSectionID = sectionId.Value
+                    });
+                    _context.SaveChanges();
+
+                    return RedirectToAction(nameof(Edit), new { id = questionnaireId.Value });
                 }
                 catch (DbUpdateException /* ex */)
                 {

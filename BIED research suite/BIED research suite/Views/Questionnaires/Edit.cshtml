@@ -1,10 +1,10 @@
 ﻿@model BIED_research_suite.Models.Database_entities.Questionnaire
 
 @{
-    ViewData["Title"] = "Edit questionnaire";
+    ViewData["Title"] = "Vragenlijst aanpassen";
 }
 
-<h1>Edit questionnaire</h1>
+<h1>Vragenlijst aanpassen</h1>
 <hr />
 <div class="row">
     <div class="col-md-10">
@@ -37,7 +37,10 @@
                     <input asp-for="@Model.QuestionnaireSections[i].IntroText" class="form-control" />
                     <span asp-validation-for="@Model.QuestionnaireSections[i].IntroText" class="text-danger"></span>
                 </div>
-                <h5>Items</h5>
+                <div class="form-group">
+                    <a asp-action="DeleteSection" asp-route-questionnaireId="@Model.QuestionnaireSections[i].QuestionnaireID" asp-route-sectionId="@Model.QuestionnaireSections[i].QuestionnaireSectionID">Sectie verwijderen</a>
+                </div>
+                <h4>Items</h4>
                 @for (int j = 0; j < @Model.QuestionnaireSections[i].QuestionnaireItems.Count; j++)
                 {
                     <input type="hidden" asp-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].QuestionnaireItemID" />
@@ -51,10 +54,20 @@
                         <select asp-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].ItemType" class="form-control" asp-items="@Html.GetEnumSelectList<ItemTypes>()"></select>
                         <span class="field__validation-message" asp-validation-for="@Model.QuestionnaireSections[i].QuestionnaireItems[j].ItemText"></span>
                     </div>
+                    <div class="form-group">
+                        <a asp-action="DeleteItem" asp-route-questionnaireId="@Model.QuestionnaireSections[i].QuestionnaireID" asp-route-itemId="@Model.QuestionnaireSections[i].QuestionnaireItems[j].QuestionnaireItemID">Item verwijderen</a>
+                    </div>
                 }
+                <div class="form-group">
+                    <a asp-action="NewItem" asp-route-questionnaireId="@Model.QuestionnaireSections[i].QuestionnaireID" asp-route-sectionId="@Model.QuestionnaireSections[i].QuestionnaireSectionID" class="btn btn-primary">Nieuw item toevoegen</a>
+                </div>
             }
+            <hr />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="NewSection" asp-route-questionnaireId="@Model.QuestionnaireID" class="btn btn-primary">Nieuwe sectie toevoegen</a>
+            </div>
+            <div class="form-group">
+                <input type="submit" asp-page-handler="Edit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
