@@ -1,0 +1,32 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityUser
+
+@{
+    ViewData["Title"] = "Gebruiker details";
+}
+
+    <div>
+        <h1>@Html.DisplayFor(model => model.UserName)</h1>
+        <hr />
+        <h5>Details</h5>
+        <hr />
+        <dl class="row">
+            <dd class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        </dl>
+        <dl class="row">
+            <dd class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+        </dl>
+    </div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Aanpassen</a> |
+    <a asp-action="Index">Terug naar de lijst</a>
+</div>

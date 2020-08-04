@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System.Linq;
 
@@ -7,62 +6,41 @@ namespace BIED_research_suite.Data
 {
     public class DbInitializerIdentity
     {
-        public static void Initialize(ApplicationDbContext context)
+        public static async void Initialize(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            context.Database.EnsureCreated();
-
-            if (context.Users.Any())
+            if (userManager.Users.Any())
             {
                 return;
             }
 
-            //Check if the administrator and researcher roles exist
-            if (!context.Roles.Contains<IdentityRole>(new IdentityRole { Id = "administrator" }))
-            {
-                context.Roles.Add(new IdentityRole { Id = "administrator", Name = "Administrator" });
-                context.SaveChanges();
-            }
-            if (!context.Roles.Contains<IdentityRole>(new IdentityRole { Id = "onderzoeker" }))
-            {
-                context.Roles.Add(new IdentityRole { Id = "onderzoeker", Name = "Onderzoeker" });
-                context.SaveChanges();
-            }
-            if (!context.Roles.Contains<IdentityRole>(new IdentityRole { Id = "deelnemer" }))
-            {
-                context.Roles.Add(new IdentityRole { Id = "deelnemer", Name = "Deelnemer" });
-                context.SaveChanges();
-            }
+            await SeedRoles.SeedRolesAsync(roleManager);
 
-            //var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context),new IdentityOptions(), new PasswordHasher<IdentityUser>());
-
-            // Check if the administrator user exists
-            if (!context.Users.Contains<IdentityUser>(new IdentityUser { UserName = "Administrator"}))
+            var admin = new IdentityUser
             {
-                // Add the administrator user
-                IdentityUser admin = new IdentityUser { Email = "administrator@email.com", NormalizedEmail = "ADMINISTRATOR@EMAIL.COM", EmailConfirmed = true, UserName = "Administrator", NormalizedUserName = "ADMINISTRATOR", PasswordHash = "AQAAAAEAACcQAAAAEMEPXSA/VROK4VJH5HRZ1Dje2oGdnrtch9OjV4cA+ccVhKMjJF+fOa4nQvZJeGHPzg==" };
-                context.Users.Add(admin);
-                context.SaveChanges();
-
-                var users = context.Users.ToList();
-                admin = users.Find(u => u.UserName == "Administrator");
-
-                context.UserRoles.Add(new IdentityUserRole<string>() { RoleId = "administrator", UserId = admin.Id });
-                context.SaveChanges();
+                UserName = "administrator@email.com",
+                NormalizedUserName = "ADMINISTRATOR@EMAIL.COM",
+                Email = "administrator@email.com",
+                NormalizedEmail = "ADMINISTRATOR@EMAIL.COM",
+                EmailConfirmed = true
+            };
+            await userManager.CreateAsync(admin, "Test1!");
+            if (await userManager.IsInRoleAsync(admin, "Administrator") == false)
+            {
+                await userManager.AddToRoleAsync(admin, "Administrator");
             }
 
-            // Check if the researcher user exists
-            if (!context.Users.Contains<IdentityUser>(new IdentityUser { UserName = "Onderzoeker" }))
+            var onderzoeker = new IdentityUser
             {
-                // Add the onderzoeker user
-                IdentityUser onderzoeker = new IdentityUser { Email = "onderzoeker@email.com", NormalizedEmail = "ONDERZOEKER@EMAIL.COM", EmailConfirmed = true, UserName = "Onderzoeker", NormalizedUserName = "ONDERZOEKER", PasswordHash = "AQAAAAEAACcQAAAAEPToq80vROeKJNRKieLR3NCWpC0IdtZHKmr1tLqP2F+C4CkJwwBamN84WAVpOEuNyg==" };
-                context.Users.Add(onderzoeker);
-                context.SaveChanges();
-
-                var users = context.Users.ToList();
-                onderzoeker = users.Find(u => u.UserName == "Onderzoeker");
-
-                context.UserRoles.Add(new IdentityUserRole<string>() { RoleId = "onderzoeker", UserId = onderzoeker.Id });
-                context.SaveChanges();
+                UserName = "onderzoeker@email.com",
+                NormalizedUserName = "ONDERZOEKER",
+                Email = "ONDERZOEKER@EMAIL.COM",
+                NormalizedEmail = "ONDERZOEKER@EMAIL.COM",
+                EmailConfirmed = true
+            };
+            await userManager.CreateAsync(onderzoeker, "Test1!");
+            if (await userManager.IsInRoleAsync(onderzoeker, "Onderzoeker") == false)
+            {
+                await userManager.AddToRoleAsync(onderzoeker, "Onderzoeker");
             }
         }
     }

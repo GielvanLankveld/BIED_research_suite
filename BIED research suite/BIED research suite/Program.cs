@@ -1,5 +1,6 @@
 using BIED_research_suite.Data;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -26,9 +27,12 @@ namespace BIED_research_suite
             //Make sure all the databases are seeded
             try
             {
+                var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+                var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
                 var identityContext = services.GetRequiredService<ApplicationDbContext>();
                 identityContext.Database.EnsureCreated();
-                DbInitializerIdentity.Initialize(identityContext);
+                DbInitializerIdentity.Initialize(userManager,roleManager);
 
                 var context1 = services.GetRequiredService<QuestionnairesContext>();
                 context1.Database.EnsureCreated();
