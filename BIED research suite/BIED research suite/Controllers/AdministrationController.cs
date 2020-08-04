@@ -1,18 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BIED_research_suite.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BIED_research_suite.Controllers
 {
     [Authorize(Roles = "Administrator")]
-    public class AdministrationController : Controller
+    public class AdministrationController: Controller
     {
-        public IActionResult Index()
+        private UserManager<IdentityUser> userManager;
+
+        public AdministrationController(UserManager<IdentityUser> userManager)
         {
-            return View();
+            this.userManager = userManager;
         }
+
+        public async Task<IActionResult> Index()
+        {
+            return View(userManager.Users);
+        }
+
     }
 }

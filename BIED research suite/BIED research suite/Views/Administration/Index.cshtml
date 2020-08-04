@@ -1,8 +1,36 @@
-﻿@{
-    ViewData["Title"] = "Administrator home";
-}
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
 
-<div class="text-center">
-    <h1 class="display-4">Welkom</h1>
-    <p>Welkom op de administrator pagina.</p>
-</div>
+    @{
+        ViewData["Title"] = "Gebruikers overzicht";
+    }
+
+    <h1>Gebruikers overzicht</h1>
+
+    <p>
+        <a asp-action="Create">Nieuwe gebruiker aanmaken</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Gebruikers
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => user.UserName)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@user.Id">Bekijken</a> |
+                        <a asp-action="Edit" asp-route-id="@user.Id">Aanpassen</a> |
+                        <a asp-action="Delete" asp-route-id="@user.Id">Verwijderen</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
