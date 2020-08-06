@@ -14,8 +14,7 @@ namespace BIED_research_suite.Models.Database_entities
         public DateTime StartingDateTime { get; set; }
         public DateTime EndingDateTime { get; set; }
         public IdentityUser PrincipalInvestigator { get; set; }
-        public IList<IdentityUser> AllInvestigators { get; set; }
-        public IList<IdentityUser> Participants { get; set; }
         public IList<ResearchPhase> ResearchPhases { get; set; }
+        public IList<IdentityUser> Participants { get; set; }
     }
 }

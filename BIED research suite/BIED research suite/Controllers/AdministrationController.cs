@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BIED_research_suite.Controllers
@@ -21,7 +22,16 @@ namespace BIED_research_suite.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(userManager.Users);
+            List<UserViewModel> userViewModels = new List<UserViewModel>();
+            foreach (IdentityUser user in userManager.Users)
+            {
+                userViewModels.Add(new UserViewModel
+                {
+                    user = user,
+                    roles = await userManager.GetRolesAsync(user) as List<string>
+                });
+            }
+            return View(userViewModels);
         }
 
         // GET: Questionnaires/Details/1

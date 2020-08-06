@@ -42,6 +42,20 @@ namespace BIED_research_suite.Data
             {
                 await userManager.AddToRoleAsync(onderzoeker, "Onderzoeker");
             }
+
+            var deelnemer = new IdentityUser
+            {
+                UserName = "deelnemer@email.com",
+                NormalizedUserName = "DEELNEMER@EMAIL.COM",
+                Email = "deelnemer@email.com",
+                NormalizedEmail = "DEELNEMER@EMAIL.COM",
+                EmailConfirmed = true
+            };
+            await userManager.CreateAsync(deelnemer, "Test1!");
+            if (await userManager.IsInRoleAsync(deelnemer, "Deelnemer") == false)
+            {
+                await userManager.AddToRoleAsync(deelnemer, "Deelnemer");
+            }
         }
     }
 }

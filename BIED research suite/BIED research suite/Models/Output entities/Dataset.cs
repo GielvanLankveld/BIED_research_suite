@@ -9,6 +9,8 @@ namespace BIED_research_suite.Models.Database_entities
     public class Dataset
     {
         public int DatasetID { get; set; }
+        public int ResearchID { get; set; }
+        public int ResearchPhaseID { get; set; }
         public int QuestionnaireID { get; set; }
         public string ParticipantID { get; set; }
         public DateTime SubmissionDate { get; set; }

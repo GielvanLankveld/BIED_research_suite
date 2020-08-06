@@ -1,36 +1,35 @@
-﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+﻿@model IEnumerable<BIED_research_suite.Models.ViewModels.UserViewModel>
 
     @{
         ViewData["Title"] = "Gebruikers overzicht";
     }
 
     <h1>Gebruikers overzicht</h1>
-
-    <p>
-        <a asp-action="Create">Nieuwe gebruiker aanmaken</a>
-    </p>
     <table class="table">
         <thead>
             <tr>
                 <th>
                     Gebruikers
                 </th>
-                <th></th>
+                <th>
+                    Rollen
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var user in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(model => user.UserName)
-                    </td>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@user.Id">Bekijken</a> |
-                        <a asp-action="Edit" asp-route-id="@user.Id">Aanpassen</a> |
-                        <a asp-action="Delete" asp-route-id="@user.Id">Verwijderen</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => user.user.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => user.roles[0])
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@user.user.Id">Bekijken</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
