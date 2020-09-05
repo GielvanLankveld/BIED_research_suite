@@ -3,3 +3,7 @@ D:\SynologyDrive\Programming\Projects (language independent)\All purpose data co
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED service layer\obj\Debug\netcoreapp3.1\BIED service layer.csprojAssemblyReference.cache
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED service layer\obj\Debug\netcoreapp3.1\BIED service layer.AssemblyInfoInputs.cache
 D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED service layer\obj\Debug\netcoreapp3.1\BIED service layer.AssemblyInfo.cs
+D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED service layer\bin\Debug\netcoreapp3.1\BIED service layer.pdb
+D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED service layer\obj\Debug\netcoreapp3.1\BIED service layer.dll
+D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED service layer\obj\Debug\netcoreapp3.1\BIED service layer.pdb
+D:\SynologyDrive\Programming\Projects (language independent)\All purpose data collector\Code\BIED_research_suite\BIED research suite\BIED service layer\obj\Debug\netcoreapp3.1\BIED service layer.csproj.CoreCompileInputs.cache

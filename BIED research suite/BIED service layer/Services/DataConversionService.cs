@@ -4,14 +4,14 @@ using System.Text;
 
 namespace BIED_service_layer.Services
 {
-    class DataConversionService : IDataConversionService
+    public class DataConversionService : IDataConversionService
     {
-        string IDataConversionService.ConvertCSVtoJSON(string CSV, char csvSeparator)
+        public string ConvertCSVtoJSON(string CSV, char csvSeparator)
         {
             throw new NotImplementedException();
         }
 
-        string IDataConversionService.ConvertJSONtoCSV(string JSON, char csvSeparator)
+        public string ConvertJSONtoCSV(string JSON, char csvSeparator)
         {
             throw new NotImplementedException();
         }

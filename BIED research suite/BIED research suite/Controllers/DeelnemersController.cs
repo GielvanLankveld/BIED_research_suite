@@ -22,6 +22,18 @@ namespace BIED_research_suite.Controllers
             _researchesContext = researchesContext;
             _questionnairesContext = questionnairesContext;
             _datasetsContext = datasetsContext;
+
+            //If no datasets were found, seed one
+            if (_datasetsContext.Datasets.Any() == false)
+            {
+                Dataset dummyDataset = new Dataset
+                {
+                    //QuestionnaireID = _questionnairesContext.Questionnaires
+
+                };
+
+                _datasetsContext.Add(dummyDataset);
+            }
         }
 
         // GET: Deelnemers

@@ -996,7 +996,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/12.0.3": {
+      "Newtonsoft.Json/12.0.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
@@ -1905,6 +1905,18 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "System.Net.Http.Json/3.2.1": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Json": "4.7.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Net.Http.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Net.Http.Json.dll": {}
         }
       },
       "System.Net.NameResolution/4.3.0": {
@@ -2820,6 +2832,19 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "BIED service layer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "System.Net.Http.Json": "3.2.1"
+        },
+        "compile": {
+          "bin/placeholder/BIED service layer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BIED service layer.dll": {}
         }
       }
     }
@@ -4475,10 +4500,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/12.0.3": {
-      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+    "Newtonsoft.Json/12.0.2": {
+      "sha512": "rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
       "type": "package",
-      "path": "newtonsoft.json/12.0.3",
+      "path": "newtonsoft.json/12.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4501,9 +4526,8 @@
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.12.0.3.nupkg.sha512",
-        "newtonsoft.json.nuspec",
-        "packageIcon.png"
+        "newtonsoft.json.12.0.2.nupkg.sha512",
+        "newtonsoft.json.nuspec"
       ]
     },
     "NuGet.Frameworks/4.7.0": {
@@ -6492,6 +6516,26 @@
         "runtimes/win/lib/netstandard1.3/System.Net.Http.dll",
         "system.net.http.4.3.0.nupkg.sha512",
         "system.net.http.nuspec"
+      ]
+    },
+    "System.Net.Http.Json/3.2.1": {
+      "sha512": "KkevRTwX9uMYxuxG2/wSql8FIAItB89XT36zoh6hraQkFhf2yjotDswpAKzeuaEuMhAia6c50oZMkP1PJoYufQ==",
+      "type": "package",
+      "path": "system.net.http.json/3.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Net.Http.Json.dll",
+        "lib/net461/System.Net.Http.Json.xml",
+        "lib/netstandard2.0/System.Net.Http.Json.dll",
+        "lib/netstandard2.0/System.Net.Http.Json.xml",
+        "system.net.http.json.3.2.1.nupkg.sha512",
+        "system.net.http.json.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Net.NameResolution/4.3.0": {
@@ -9015,10 +9059,16 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "BIED service layer/1.0.0": {
+      "type": "project",
+      "path": "../BIED service layer/BIED service layer.csproj",
+      "msbuildProject": "../BIED service layer/BIED service layer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "BIED service layer >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 3.1.5",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 3.1.5",
       "Microsoft.AspNetCore.Identity.UI >= 3.1.5",
@@ -9027,7 +9077,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.5",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.10.9",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.3",
-      "Newtonsoft.Json >= 12.0.3"
+      "System.Net.Http.Json >= 3.2.1"
     ]
   },
   "packageFolders": {
@@ -9060,7 +9110,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\SynologyDrive\\Programming\\Projects (language independent)\\All purpose data collector\\Code\\BIED_research_suite\\BIED research suite\\BIED service layer\\BIED service layer.csproj": {
+              "projectPath": "D:\\SynologyDrive\\Programming\\Projects (language independent)\\All purpose data collector\\Code\\BIED_research_suite\\BIED research suite\\BIED service layer\\BIED service layer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -9104,9 +9158,9 @@
             "target": "Package",
             "version": "[3.1.3, )"
           },
-          "Newtonsoft.Json": {
+          "System.Net.Http.Json": {
             "target": "Package",
-            "version": "[12.0.3, )"
+            "version": "[3.2.1, )"
           }
         },
         "imports": [
@@ -9127,7 +9181,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

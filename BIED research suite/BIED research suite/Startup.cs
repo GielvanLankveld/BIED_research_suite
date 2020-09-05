@@ -27,6 +27,8 @@ namespace BIED_research_suite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IConfiguration>(Configuration);
+
             //Add an ef core database for identity
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

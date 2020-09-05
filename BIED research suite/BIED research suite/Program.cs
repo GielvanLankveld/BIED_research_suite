@@ -44,7 +44,7 @@ namespace BIED_research_suite
 
                 var context3 = services.GetRequiredService<DatasetsContext>();
                 context3.Database.EnsureCreated();
-                DbInitializerDatasets.Initialize(context3, context1);
+                //DbInitializerDatasets.Initialize(context3, context1, userManager, roleManager);
             }
             catch (Exception ex)
             {
